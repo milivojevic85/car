@@ -6,26 +6,32 @@
 </head>
 <body>
 <?php 
+// The parent class
 class Car
 {
+	// Private property inside the class
 	private $model = "";
 	
-	// The constructor
-	public function __construct($model = null) {
-		if($model) {
-			$this->model = $model;
-		}
+	// Public setter method
+	public function setModel($model) {
+		$this->model = $model;
 	}
-	public function getCarModel() {
-		// We use the __class__ magic constant in order to get the class name
-		return "The ".__CLASS__." model is: ".$this->model."<br>";
+	public function hello() {
+		return "Beep! I am a <i>".$this->model."</i>.<br>";
 	}
 }
 
-// We create the new Car object with the value of the model
-$car1 = new Car("Mercedes");
-echo $car1->getCarModel(); // The Car model is: Mercedes
+// The child class inherits the code from the parent class
+class SportsCar extends Car {
+	// No code in the child class
+}
 
+// Create an instance from the child class
+$sportsCar1 = new SportsCar();
+// Set the value of the class’ property. For this aim, we use a method that we created in the parent
+$sportsCar1->setModel("Mercedes");
+// Use another method that the child class inherited from the parent class
+echo $sportsCar1->hello();
 ?>
 </body>
 </html>
