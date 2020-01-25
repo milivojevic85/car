@@ -6,36 +6,33 @@
 </head>
 <body>
 <?php 
-// The parent class has its properties and methods
+// The parent class
 class Car
 {
-	// A private property or method can be used only by the parent
+	// The $model property is private, thus it can be accessed only from inside the class
 	private $model = "";
 	
-	// Public methods and properties can be used by both the parent and the child classes
+	// Public setter method
 	public function setModel($model) {
 		$this->model = $model;
 	}
-	public function getModel() {
-		return $this->model;
-	}
 }
 
-// The child class can use the code it inherited from the parent class, and it can also have its own code
-class SportsCar extends Car {
-	private $style = "fast and furious";
-	
-	public function driveItWithStyle() {
-		return "Drive a ".$this->getModel()." <i>".$this->style."</i>.<br>";
+// The child class
+class SportsCar extends Car 
+{
+	// Tries to get a private property that belongs to the parent
+	public function hello() {
+		return "beep! I am a <i>".$this->model."</i>.<br>";
 	}
 }
 
 // Create an instance from the child class
 $sportsCar1 = new SportsCar();
-// Use a method that the child class inherited from the parent class
-$sportsCar1->setModel("Ferrari");
-// Use a method that was added to the child class
-echo $sportsCar1->driveItWithStyle(); // Drive a Ferrari fast and furious.
+// Set the class model name
+$sportsCar1->setModel("Mercedes Benz");
+// Get the class model name
+echo $sportsCar1->hello(); // Notice: Undefined property: SportsCar::$model
 ?>
 </body>
 </html>
