@@ -8,32 +8,20 @@
 <?php 
 class User
 {
-	public $firstName;
-	public $lastName;
+	private $firstName;
 	
-	public function sayHello() {
-		return "Hello, ".$this->firstName." ".$this->lastName."<br>";
+	public function setFirstName($name) {
+		$this->firstName = $name;
 	}
-	
-	public function register() {
-		echo $this->firstName." ".$this->lastName." registered.";
-		return $this;
-	}
-	public function email() {
-		echo " emailed.<br>";
+	public function getFirstName() {
+		return $this->firstName;
 	}
 }
 
 $user1 = new User();
-$user2 = new User();
+$user1->setFirstName("Joe");
+echo $user1->getFirstName(); // Joe
 
-$user1->firstName = "John";
-$user1->lastName = "Doe";
-
-$user2->firstName = "Jane";
-$user2->lastName = "Roe";
-
-$user2->register()->email(); // Jane Roe registered. emailed.
 ?>
 </body>
 </html>
