@@ -8,20 +8,27 @@
 <?php 
 class User
 {
-	private $firstName;
-	private $lastName;
+	protected $username;
 	
-	public function __construct($firstN, $lastN) {
-		$this->firstName = $firstN;
-		$this->lastName = $lastN;
-	}
-	public function getFullName() {
-		return "The full name is: ".$this->firstName." ".$this->lastName."<br>";
+	public function setUsername($username) {
+		$this->username = $username;
 	}
 }
 
-$user1 = new User("John", "Doe");
-echo $user1->getFullName(); // The full name is: John Doe
+class Admin extends User
+{
+	public function expressYourRole() {
+		return __CLASS__."<br>";
+	}
+	public function sayHello() {
+		return "Hello admin, ".$this->username."<br>";
+	}
+}
+
+$admin1 = new Admin();
+$admin1->setUsername("Balthazar");
+echo $admin1->expressYourRole(); // Admin
+echo $admin1->sayHello(); // Hello admin, Balthazar
 
 ?>
 </body>
