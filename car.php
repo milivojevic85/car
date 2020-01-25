@@ -8,22 +8,30 @@
 <?php 
 class Car
 {
-	public $comp;
-	public $color = "beige";
-	public $hasSunRoof = true;
+	public $tank;
 	
-	public function hello() {
-		return "Beep I am a <i>".$this->comp."</i>, and I am <i>".$this->color."</i>.<br>";
+	// Add gallons of fuel to the tank when we fill it
+	public function fill($gallons) {
+		$this->tank += $gallons;
+		return $this;
+	}
+	
+	// Subtract gallons of fuel from the tank as we ride the car
+	public function ride($miles) {
+		$gallons = $miles / 50;
+		$this->tank -= $gallons;
+		return $this;
 	}
 }
 
+// Create an object from the Car class
 $bmw = new Car();
-$mercedes = new Car();
 
-$mercedes->comp = "Mercedes Benz";
-$mercedes->color = "green";
+// Add 10 gallons of fuel, then ride 40 miles, and get the number of gallons in the tank
+$tank = $bmw->fill(10)->ride(40)->tank;
 
-echo $mercedes->hello(); // Beep I am a Mercedes Benz, and I am green.
+// Print the results to the screen
+echo "The number of gallons left in the tank: ".$tank."<br>"; // The number of gallons left in the tank: 9.2
 
 ?>
 </body>
