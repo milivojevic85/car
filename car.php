@@ -35,7 +35,7 @@ $sportsCar1 = new SportsCar();
 // Use a method that the child class inherited from the parent class
 $sportsCar1->setModel("Ferrari");
 // Use a method that was added to the child class
-echo $sportsCar1->driveItWithStyle();
+echo $sportsCar1->driveItWithStyle(); // Drive a Ferrari fast and furious.
 ?>
 </body>
 </html>
