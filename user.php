@@ -6,32 +6,39 @@
 </head>
 <body>
 <?php 
-class User
+abstract class User
 {
-	private $username;
+	protected $username;
 	
-	public function setUsername($username) {
-		$this->username = $username;
+	public function setUsername($name) {
+		$this->username = $name;
 	}
+	
 	public function getUsername() {
 		return $this->username;
 	}
+	
+	abstract public function stateYourRole();
 }
 
 class Admin extends User
 {
-	public function expressYourRole() {
-		return __CLASS__."<br>";
+	public function stateYourRole() {
+		return strtolower(__CLASS__);
 	}
-	public function sayHello() {
-		return "Hello admin, ".$this->getUsername()."<br>";
+}
+
+class Viewer extends User
+{
+	public function stateYourRole() {
+		return "something different";
 	}
 }
 
 $admin1 = new Admin();
 $admin1->setUsername("Balthazar");
-echo $admin1->expressYourRole(); // Admin
-echo $admin1->sayHello(); // Hello admin, Balthazar
+echo $admin1->stateYourRole(); // admin
+
 
 ?>
 </body>
