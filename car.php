@@ -6,33 +6,26 @@
 </head>
 <body>
 <?php 
-// The parent class
+// The parent class has hello method that returns "beep"
 class Car
 {
-	// The $model property is now protected, so it can be accessed from within the class and its child classes
-	protected $model = "";
-	
-	// Public setter method
-	public function setModel($model) {
-		$this->model = $model;
+	public function hello() {
+		return "beep";
 	}
 }
 
-// The child class
+// The child class has hello method that returns "Hallo"
 class SportsCar extends Car 
 {
-	// Has no problem to get a protected property that belongs to the parent
 	public function hello() {
-		return "beep! I am a <i>".$this->model."</i>.<br>";
+		return "Hallo";
 	}
 }
 
-// Create an instance from the child class
+// Create a new object
 $sportsCar1 = new SportsCar();
-// Set the class model name
-$sportsCar1->setModel("Mercedes Benz");
-// Get the class model name
-echo $sportsCar1->hello(); // beep! I am a Mercedes Benz.
+// Get the result of the hello method
+echo $sportsCar1->hello(); // Hallo
 ?>
 </body>
 </html>
