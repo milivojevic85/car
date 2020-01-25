@@ -8,30 +8,22 @@
 <?php 
 class Car
 {
-	public $tank;
+	// The private access modifier denies access to the method from outside the class’s scope
+	private $model;
 	
-	// Add gallons of fuel to the tank when we fill it
-	public function fill($gallons) {
-		$this->tank += $gallons;
-		return $this;
+	// The public access modifier allows the access to the method from outside the class
+	public function setModel($model) {
+		$this->model = $model;
 	}
-	
-	// Subtract gallons of fuel from the tank as we ride the car
-	public function ride($miles) {
-		$gallons = $miles / 50;
-		$this->tank -= $gallons;
-		return $this;
+	public function getModel() {
+		return $this->model;
 	}
 }
 
-// Create an object from the Car class
-$bmw = new Car();
+$mercedes = new Car();
+$mercedes->setModel("Mercedes");
+echo "The car model is ".$mercedes->getModel()."<br>"; // The car model is Mercedes
 
-// Add 10 gallons of fuel, then ride 40 miles, and get the number of gallons in the tank
-$tank = $bmw->fill(10)->ride(40)->tank;
-
-// Print the results to the screen
-echo "The number of gallons left in the tank: ".$tank."<br>"; // The number of gallons left in the tank: 9.2
 
 ?>
 </body>
