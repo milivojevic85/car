@@ -17,13 +17,14 @@ class Car
 		}
 	}
 	public function getCarModel() {
-		return $this->model;
+		// We use the __class__ magic constant in order to get the class name
+		return "The ".__CLASS__." model is: ".$this->model."<br>";
 	}
 }
 
 // We create the new Car object with the value of the model
 $car1 = new Car("Mercedes");
-echo "The car model is: ".$car1->getCarModel()."<br>"; // The car model is:
+echo $car1->getCarModel(); // The Car model is: Mercedes
 
 ?>
 </body>
