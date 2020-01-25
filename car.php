@@ -21,7 +21,7 @@ class Car
 
 // We pass the value of the variable once we create the object
 $car1 = new Car("Mercedes");
-echo "The car model is: ".$car1->getCarModel()."<br>";
+echo "The car model is: ".$car1->getCarModel()."<br>"; // The car model is: Mercedes
 
 ?>
 </body>
