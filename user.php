@@ -6,7 +6,19 @@
 </head>
 <body>
 <?php 
-abstract class User
+interface Author
+{
+	public function setAuthorPrivileges($array);
+	public function getAuthorPrivileges();
+}
+
+interface Editor
+{
+	public function setEditorPrivileges($array);
+	public function getEditorPrivileges();
+}
+
+class User
 {
 	protected $username;
 	
@@ -17,29 +29,40 @@ abstract class User
 	public function getUsername() {
 		return $this->username;
 	}
-	
-	abstract public function stateYourRole();
 }
 
-class Admin extends User
+class AuthorEditor extends User implements Author, Editor
 {
-	public function stateYourRole() {
-		return strtolower(__CLASS__);
+	private $authorPrivilegesArray = array();
+	private $editorPrivilegesArray = array();
+	public function setAuthorPrivileges($array) {
+		$this->authorPrivilegesArray = $array;
+	}
+	public function getAuthorPrivileges() {
+		return $this->authorPrivilegesArray;
+	}
+	public function setEditorPrivileges($array) {
+		$this->editorPrivilegesArray = $array;
+	}
+	public function getEditorPrivileges() {
+		return $this->editorPrivilegesArray;
 	}
 }
 
-class Viewer extends User
-{
-	public function stateYourRole() {
-		return "something different";
-	}
+$user1 = new AuthorEditor();
+
+$user1->setUsername("Balthazar");
+$userName = $user1->getUsername();
+
+$user1->setAuthorPrivileges(array("write text", "add punctuation"));
+$user1->setEditorPrivileges(array("edit text", "edit punctuation"));
+$userPrivileges = array_merge($user1->getAuthorPrivileges(), $user1->getEditorPrivileges());
+echo $userName." has the following privileges: ";
+foreach ($userPrivileges as $privilege) {
+	echo " {$privilege}, ";
 }
-
-$admin1 = new Admin();
-$admin1->setUsername("Balthazar");
-echo $admin1->stateYourRole(); // admin
-
-
+echo ".";
+// Balthazar has the following privileges: write text, add punctuation, edit text, edit punctuation,.
 ?>
 </body>
 </html>
