@@ -8,10 +8,13 @@
 <?php 
 class User
 {
-	protected $username;
+	private $username;
 	
 	public function setUsername($username) {
 		$this->username = $username;
+	}
+	public function getUsername() {
+		return $this->username;
 	}
 }
 
@@ -21,7 +24,7 @@ class Admin extends User
 		return __CLASS__."<br>";
 	}
 	public function sayHello() {
-		return "Hello admin, ".$this->username."<br>";
+		return "Hello admin, ".$this->getUsername()."<br>";
 	}
 }
 
