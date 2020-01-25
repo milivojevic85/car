@@ -9,18 +9,19 @@
 class User
 {
 	private $firstName;
+	private $lastName;
 	
-	public function setFirstName($name) {
-		$this->firstName = $name;
+	public function __construct($firstN, $lastN) {
+		$this->firstName = $firstN;
+		$this->lastName = $lastN;
 	}
-	public function getFirstName() {
-		return $this->firstName;
+	public function getFullName() {
+		return "The full name is: ".$this->firstName." ".$this->lastName."<br>";
 	}
 }
 
-$user1 = new User();
-$user1->setFirstName("Joe");
-echo $user1->getFirstName(); // Joe
+$user1 = new User("John", "Doe");
+echo $user1->getFullName(); // The full name is: John Doe
 
 ?>
 </body>
