@@ -14,6 +14,14 @@ class User
 	public function sayHello() {
 		return "Hello, ".$this->firstName." ".$this->lastName."<br>";
 	}
+	
+	public function register() {
+		echo $this->firstName." ".$this->lastName." registered.";
+		return $this;
+	}
+	public function email() {
+		echo " emailed.<br>";
+	}
 }
 
 $user1 = new User();
@@ -23,10 +31,9 @@ $user1->firstName = "John";
 $user1->lastName = "Doe";
 
 $user2->firstName = "Jane";
-$user2->lastName = "Doe";
+$user2->lastName = "Roe";
 
-echo $user1->sayHello(); // Hello, John Doe
-echo $user2->sayHello(); // Hello, Jane Doe
+$user2->register()->email(); // Jane Roe registered. emailed.
 ?>
 </body>
 </html>
