@@ -6,26 +6,47 @@
 </head>
 <body>
 <?php 
-// The parent class has hello method that returns "beep"
-class Car
+// Abstract classes are declared with the abstract keyword, and contain abstract methods
+abstract class Car
 {
-	final public function hello() {
-		return "beep";
+	// Abstract classes can have properties
+	protected $tankVolume;
+	
+	// Abstract classes can have non abstract methods
+	public function setTankVolume($volume) {
+		$this->tankVolume = $volume;
+	}
+	
+	// Abstract method
+	abstract public function calcNumMilesOnFullTank();
+}
+
+class Honda extends Car
+{
+	// Since we inherited abstract method, we need to define it in the child class, by adding code to the method's body.
+	public function calcNumMilesOnFullTank() {
+		$miles = $this->tankVolume * 30;
+		return $miles;
 	}
 }
 
-// The child class has hello method that tries to override the hello method in the parent
-class SportsCar extends Car 
+class Toyota extends Car
 {
-	public function hello() {
-		return "Hallo";
+	// Since we inherited abstract method, we need to define it in the child class, by adding code to the method's body.
+	public function calcNumMilesOnFullTank() {
+		$miles = $this->tankVolume * 33;
+		return $miles;
+	}
+	
+	public function getColor() {
+		return "beige";
 	}
 }
 
-// Create a new object
-$sportsCar1 = new SportsCar();
-// Get the result of the hello method
-echo $sportsCar1->hello(); // Fatal error: Cannot override final method Car::hello()
+$toyota1 = new Toyota();
+$toyota1->setTankVolume(10);
+echo $toyota1->calcNumMilesOnFullTank()."<br>"; // 330
+echo $toyota1->getColor(); // beige
 ?>
 </body>
 </html>
