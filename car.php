@@ -6,47 +6,42 @@
 </head>
 <body>
 <?php 
-// Abstract classes are declared with the abstract keyword, and contain abstract methods
-abstract class Car
+interface Car
 {
-	// Abstract classes can have properties
-	protected $tankVolume;
-	
-	// Abstract classes can have non abstract methods
-	public function setTankVolume($volume) {
-		$this->tankVolume = $volume;
-	}
-	
-	// Abstract method
-	abstract public function calcNumMilesOnFullTank();
+	public function setModel($name);
+	public function getModel();
 }
 
-class Honda extends Car
+interface Vehicle
 {
-	// Since we inherited abstract method, we need to define it in the child class, by adding code to the method's body.
-	public function calcNumMilesOnFullTank() {
-		$miles = $this->tankVolume * 30;
-		return $miles;
-	}
+	public function setHasWheels($bool);
+	public function getHasWheels();
 }
 
-class Toyota extends Car
+// The class implements two interfaces
+class MiniCar implements Car, Vehicle
 {
-	// Since we inherited abstract method, we need to define it in the child class, by adding code to the method's body.
-	public function calcNumMilesOnFullTank() {
-		$miles = $this->tankVolume * 33;
-		return $miles;
-	}
+	private $model;
+	private $hasWheels;
 	
-	public function getColor() {
-		return "beige";
+	public function setModel($name) {
+		$this->model = $name;
+	}
+	public function getModel() {
+		return $this->model;
+	}
+	public function setHasWheels($bool) {
+		$this->hasWheels = $bool;
+	}
+	public function getHasWheels() {
+		return ($this->hasWheels)? "has wheels" : "has no wheels";
 	}
 }
 
-$toyota1 = new Toyota();
-$toyota1->setTankVolume(10);
-echo $toyota1->calcNumMilesOnFullTank()."<br>"; // 330
-echo $toyota1->getColor(); // beige
+$miniCar1 = new MiniCar();
+$miniCar1->setModel("Mini Cooper");
+$miniCar1->setHasWheels(true);
+echo $miniCar1->getModel()." ".$miniCar1->getHasWheels(); // Mini Cooper has wheels
 ?>
 </body>
 </html>
