@@ -6,63 +6,42 @@
 </head>
 <body>
 <?php 
-interface Author
+abstract class User 
 {
-	public function setAuthorPrivileges($array);
-	public function getAuthorPrivileges();
-}
-
-interface Editor
-{
-	public function setEditorPrivileges($array);
-	public function getEditorPrivileges();
-}
-
-class User
-{
-	protected $username;
+	protected $scores = 0;
+	protected $numberOfArticles = 0;
 	
-	public function setUsername($name) {
-		$this->username = $name;
+	// The abstract and concrete methods
+	public function setNumberOfArticles($int) {
+		$this->numberOfArticles = $int;
 	}
-	
-	public function getUsername() {
-		return $this->username;
+	public function getNumberOfArticles() {
+		return $this->numberOfArticles;
 	}
+	abstract public function calcScores();
 }
 
-class AuthorEditor extends User implements Author, Editor
+class Author extends User
 {
-	private $authorPrivilegesArray = array();
-	private $editorPrivilegesArray = array();
-	public function setAuthorPrivileges($array) {
-		$this->authorPrivilegesArray = $array;
-	}
-	public function getAuthorPrivileges() {
-		return $this->authorPrivilegesArray;
-	}
-	public function setEditorPrivileges($array) {
-		$this->editorPrivilegesArray = $array;
-	}
-	public function getEditorPrivileges() {
-		return $this->editorPrivilegesArray;
+	public function calcScores(){
+		return $this->scores = $this->numberOfArticles * 10 + 20;
 	}
 }
 
-$user1 = new AuthorEditor();
-
-$user1->setUsername("Balthazar");
-$userName = $user1->getUsername();
-
-$user1->setAuthorPrivileges(array("write text", "add punctuation"));
-$user1->setEditorPrivileges(array("edit text", "edit punctuation"));
-$userPrivileges = array_merge($user1->getAuthorPrivileges(), $user1->getEditorPrivileges());
-echo $userName." has the following privileges: ";
-foreach ($userPrivileges as $privilege) {
-	echo " {$privilege}, ";
+class Editor extends User
+{
+	public function calcScores(){
+		return $this->scores = $this->numberOfArticles * 6 + 15;
+	}
 }
-echo ".";
-// Balthazar has the following privileges: write text, add punctuation, edit text, edit punctuation,.
+
+$author1 = new Author();
+$author1->setNumberOfArticles(8);
+echo $author1->calcScores()."<br>"; // 100
+
+$editor1 = new Editor();
+$editor1->setNumberOfArticles(15);
+echo $editor1->calcScores()."<br>"; // 170
 ?>
 </body>
 </html>
