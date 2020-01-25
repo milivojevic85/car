@@ -6,32 +6,36 @@
 </head>
 <body>
 <?php 
-// The parent class
+// The parent class has its properties and methods
 class Car
 {
-	// Private property inside the class
+	// A private property or method can be used only by the parent
 	private $model = "";
 	
-	// Public setter method
+	// Public methods and properties can be used by both the parent and the child classes
 	public function setModel($model) {
 		$this->model = $model;
 	}
-	public function hello() {
-		return "Beep! I am a <i>".$this->model."</i>.<br>";
+	public function getModel() {
+		return $this->model;
 	}
 }
 
-// The child class inherits the code from the parent class
+// The child class can use the code it inherited from the parent class, and it can also have its own code
 class SportsCar extends Car {
-	// No code in the child class
+	private $style = "fast and furious";
+	
+	public function driveItWithStyle() {
+		return "Drive a ".$this->getModel()." <i>".$this->style."</i>.<br>";
+	}
 }
 
 // Create an instance from the child class
 $sportsCar1 = new SportsCar();
-// Set the value of the class’ property. For this aim, we use a method that we created in the parent
-$sportsCar1->setModel("Mercedes");
-// Use another method that the child class inherited from the parent class
-echo $sportsCar1->hello();
+// Use a method that the child class inherited from the parent class
+$sportsCar1->setModel("Ferrari");
+// Use a method that was added to the child class
+echo $sportsCar1->driveItWithStyle();
 ?>
 </body>
 </html>
