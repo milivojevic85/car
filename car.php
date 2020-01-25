@@ -8,10 +8,9 @@
 <?php 
 class Car
 {
-	// The $model property has a default value of "N/A"
 	private $model = "";
 	
-	// We don't have to assign a value to the $model property since it already has a default value
+	// The constructor
 	public function __construct($model = null) {
 		if($model) {
 			$this->model = $model;
@@ -22,8 +21,8 @@ class Car
 	}
 }
 
-// We create the new Car object without passing a value to the model
-$car1 = new Car();
+// We create the new Car object with the value of the model
+$car1 = new Car("Mercedes");
 echo "The car model is: ".$car1->getCarModel()."<br>"; // The car model is:
 
 ?>
