@@ -9,12 +9,12 @@
 // The parent class has hello method that returns "beep"
 class Car
 {
-	public function hello() {
+	final public function hello() {
 		return "beep";
 	}
 }
 
-// The child class has hello method that returns "Hallo"
+// The child class has hello method that tries to override the hello method in the parent
 class SportsCar extends Car 
 {
 	public function hello() {
@@ -25,7 +25,7 @@ class SportsCar extends Car
 // Create a new object
 $sportsCar1 = new SportsCar();
 // Get the result of the hello method
-echo $sportsCar1->hello(); // Hallo
+echo $sportsCar1->hello(); // Fatal error: Cannot override final method Car::hello()
 ?>
 </body>
 </html>
